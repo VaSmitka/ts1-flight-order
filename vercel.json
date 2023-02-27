@@ -8,7 +8,7 @@
     { "src": "/(.*)",  "dest": "/api/index.php" }
   ],
   "env": {
-    "APP_ENV": "prod",
+    "APP_ENV": "dev",
     "APP_SECRET": "bf16473b6551f980d3b8788f8d8b0028",
     "MESSENGER_TRANSPORT_DSN": "doctrine://default?auto_setup=0",
     "DATABASE_URL": "sqlite:///%kernel.project_dir%/var/data.db"
