@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Flight order{% endblock %}
+
+{% block body %}
+<div>
+    <h1>Flight order</h1>
+    <p>Pleace fill in this form to complete your order.</p>
+
+    <hr class="bg-secondary border-2 border-top border-secondary w-75">
+
+    <div class="form w-75">
+        {{ form_start(form, {'attr': {'class': 'row g-3'}}) }}
+            <div class="col-md-6">
+                {{ form_label(form.firstName) }}
+                {{ form_widget(form.firstName) }}
+
+                {{ form_errors(form.firstName) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_label(form.lastName) }}
+                {{ form_widget(form.lastName) }}
+
+                {{ form_errors(form.lastName) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email) }}
+
+                {{ form_errors(form.email) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_label(form.birthDate) }}
+                {{ form_widget(form.birthDate) }}
+
+                {{ form_errors(form.birthDate) }}
+            </div>
+            <div class="col-12">
+                {{ form_label(form.destination) }}
+                {{ form_widget(form.destination) }}
+
+                {{ form_errors(form.destination) }}
+            </div>
+            <div class="col-12">
+                {{ form_label(form.discount) }}
+                <div>
+                    {% for key, item in form.discount.children %}
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="{{item.vars.id}}">{{item.vars.label}}</label>
+                            <input 
+                                class="form-check-input"
+                                type="radio" 
+                                value="{{item.vars.value}}" 
+                                id="{{item.vars.id}}" 
+                                name="{{item.vars.full_name}}" 
+                            {{ item.vars.checked ? 'checked' : '' }} 
+                            >
+                        </div>
+                    {% endfor %}
+                </div>
+                {{ form_errors(form.discount) }}
+            </div>
+            
+            <hr class="bg-secondary border-2 border-top border-secondary">
+
+            <div class="col-12">
+                <p>By making the order you agree to our <a href="#">Terms &amp; Privacy.</a></p>
+            </div>
+            <div class="col-12">
+                {{ form_widget(form.submit) }}
+            </div>
+
+            {# crtf token #}
+            {{ form_row(form._token) }}
+        {{ form_end(form, {'render_rest': false}) }}
+    </div>
+</div>
+{% endblock %}
